@@ -20,6 +20,6 @@ except (OSError, IOError):
 try:
     mileage = float(input("Enter mileage: "))
     mileage = (mileage - kmmean) / kmstd
-    print(estimate.price(t0, t1, mileage))
+    print(int((estimate.price(t0, t1, mileage))), 'euros')
 except Exception:
     print("Expected integer value")

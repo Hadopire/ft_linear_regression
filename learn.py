@@ -38,8 +38,8 @@ kmmean = float(sum(kms)) / max(len(kms), 1)
 for i in range(0, len(dataSet)):
     dataSet[i]['km'] = (kms[i] - kmmean) / kmstd
 
-learningRate = 0.1
-iteration = 100
+learningRate = 0.3
+iteration = 300
 plt.figure(2)
 plt.ylabel('prediction error')
 plt.xlabel('iterations')
