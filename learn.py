@@ -5,20 +5,22 @@ import matplotlib.pyplot as plt
 import statistics
 
 t0, t1 = 0.0, 0.0
-#try:
-#    with open('model.csv', 'rb') as csvfile:
-#        reader = csv.DictReader(csvfile)
-#        for row in reader:
-#            t0 = float(row['theta0'])
-#            t1 = float(row['theta1'])
-#except (OSError, IOError):
-#    t0 = 0.0
-#    t1 = 0.0
+try:
+    with open('model.csv', 'r') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            t0 = float(row['theta0'])
+            t1 = float(row['theta1'])
+except (OSError, IOError):
+    t0 = 0.0
+    t1 = 0.0
 
 
 dataSet = []
 kms = []
-prices = []
+plt.ylabel('mileage')
+plt.xlabel('price')
+plt.title('data')
 try:
     with open('data.csv', 'r') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -26,7 +28,6 @@ try:
             dataSet.append({'km':float(row['km']),'price':float(row['price'])})
             plt.plot([float(row['km'])], [float(row['price'])], 'ro')
             kms.append(float(row['km']))
-            prices.append(float(row['price']))
 except (OSError, IOError):
     print("failed to open data.csv")
     sys.exit()
@@ -37,11 +38,12 @@ kmmean = float(sum(kms)) / max(len(kms), 1)
 for i in range(0, len(dataSet)):
     dataSet[i]['km'] = (kms[i] - kmmean) / kmstd
 
-print(kms)
-
 learningRate = 0.1
 iteration = 100
 plt.figure(2)
+plt.ylabel('prediction error')
+plt.xlabel('iterations')
+plt.title('gradient descent')
 plots = []
 for i in range(0, iteration):
     qt0, qt1 = 0.0, 0.0
