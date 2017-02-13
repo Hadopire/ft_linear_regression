@@ -18,8 +18,8 @@ except (OSError, IOError):
 
 dataSet = []
 kms = []
-plt.ylabel('mileage')
-plt.xlabel('price')
+plt.xlabel('mileage')
+plt.ylabel('price')
 plt.title('data')
 try:
     with open('data.csv', 'r') as csvfile:
